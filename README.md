@@ -88,6 +88,20 @@ Select a profile to see its settings:
 | **Start Minimized** | Don't show the overlay on startup |
 | **Resize** | Allow resizing the overlay window |
 
+### Program-Specific Profiles
+
+You can assign profiles to specific applications so they automatically activate when that application is in the foreground.
+
+1. Go to **Settings**
+2. Enable **Program-Specific Profiles**
+3. Go to the **Profiles** page
+4. Select a profile and click the application picker
+5. Choose a running application from the list
+6. When that application is in the foreground, the profile activates automatically
+7. When you switch away, the default profile restores
+
+This is useful for showing game-specific overlays, application-specific sensor layouts, or different information for different workflows.
+
 ### Import and Export
 
 - **Export**: Right-click a profile and select Export. Saves as a `.infopanel` file including all assets.
@@ -149,7 +163,7 @@ The right sidebar shows properties for the selected item. Properties vary by ite
 
 - **Name** -- Item label (shown in the item list)
 - **Position** -- X and Y coordinates
-- **Rotation** -- 0-360 degrees
+- **Rotation** -- -180 to 180 degrees (available for text, sensor, image, shape, bar, graph, gauge, and donut items)
 - **Lock** -- Prevent accidental movement
 - **Hidden** -- Hide from display but keep in profile
 
@@ -303,6 +317,7 @@ A static text label. Use it for titles, labels, or any fixed text.
 - Uppercase toggle
 - Text wrapping (set a width to enable)
 - Marquee scrolling (scrolling text, with speed and spacing controls)
+- Rotation (-180 to 180 degrees)
 
 ### Sensor
 
@@ -398,6 +413,7 @@ Displays sensor data over time as a line chart or histogram.
 - **Background** -- Background color behind the chart
 - **Min/Max** -- Auto or manual value range
 - **Colors** -- Line color, fill color, frame color, background color
+- **Rotation** -- -180 to 180 degrees
 
 ### Bar
 
@@ -405,6 +421,7 @@ A horizontal or vertical bar showing a sensor value as a percentage.
 
 **Properties:**
 - Same as Graph (colors, frame, background, min/max)
+- Rotation (-180 to 180 degrees)
 - Useful for showing CPU/GPU usage, temperatures, etc.
 
 ### Donut
@@ -419,14 +436,16 @@ A circular progress ring showing a sensor value as a percentage.
 
 ### Gauge
 
-A custom gauge with a needle indicator. Uses an image as the gauge face and overlays a needle based on sensor value.
+A custom gauge with a needle indicator. Uses image frames as the gauge face and interpolates between them based on sensor value.
 
 **Properties:**
-- Gauge image (the background face)
-- Needle configuration
+- Gauge images (add up to 101 frames for smooth animation)
 - Min/Max values
 - Sensor source
-- Smooth animation
+- Animation speed (0 = instant, higher = smoother follow)
+- Resize scale
+- Rotation (-180 to 180 degrees)
+- Mirror (flip horizontally, useful for reversing gauge orientation)
 
 ---
 
@@ -511,6 +530,12 @@ InfoPanel can render directly to USB LCD panels mounted on CPU coolers, cases, o
 - Display mask for Vision 360 camera punch-hole
 - Flicker fix for Trofeo 9.16"
 - Software brightness, JPEG quality, target FPS
+
+**Thermaltake LCD Panels:**
+- TOUGHLIQUID ULTRA 6" LCD (1480x720)
+- Auto-detected via VID 0x264A
+- Hardware brightness control
+- JPEG streaming at up to ~23fps
 
 ### Setting Up a USB Panel
 
